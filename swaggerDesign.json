@@ -13,13 +13,9 @@
         },
         "version": "1.0.0"
     },
-    "externalDocs": {
-        "description": "Find out more about Swagger",
-        "url": "http://swagger.io"
-    },
-    "host": "book-tracker-abrunst.herokuapp.com",
+    "host": "localhost:8080",
     "basePath": "/",
-    "schemes": ["https"],
+    "schemes": ["http"],
     "tags": [{
             "name": "book",
             "description": "Book Collection"
@@ -83,24 +79,20 @@
                 }]
             }
         },
-        "/book/{id}": {
+        "/book/{_id}": {
             "get": {
                 "tags": [
                     "book"
                 ],
-                "summary": "Find book by book title",
+                "summary": "Find book by book ID",
                 "description": "Returns a single book",
                 "operationId": "getBook",
                 "parameters": [{
-                    "name": "id",
+                    "name": "_id",
                     "in": "path",
-                    "description": "Find by book ID",
+                    "description": "Name the book needed",
                     "required": true,
-                    "style": "simple",
-                    "explode": false,
-                    "schema": {
-                        "type": "string"
-                    }
+                    "type": "string"
                 }],
                 "responses": {
                     "200": {
@@ -136,9 +128,9 @@
                 "summary": "Update an existing book",
                 "operationId": "updateBook",
                 "parameters": [{
-                    "name": "id",
+                    "name": "_id",
                     "in": "path",
-                    "description": "Book ID to update",
+                    "description": "Book name to update",
                     "required": true,
                     "style": "simple",
                     "explode": false,
@@ -174,9 +166,9 @@
                 "summary": "Delete a book",
                 "operationId": "deleteBook",
                 "parameters": [{
-                    "name": "id",
+                    "name": "_id",
                     "in": "path",
-                    "description": "Book ID to delete",
+                    "description": "Book name to delete",
                     "required": true,
                     "style": "simple",
                     "explode": false,
@@ -426,9 +418,9 @@
             "Books": {
                 "type": "object",
                 "properties": {
-                    "id": {
+                    "_id": {
                         "type": "integer",
-                        "format": "int64"
+                        "format": "string"
                     },
                     "bookName": {
                         "type": "string",
@@ -474,8 +466,7 @@
                         "type": "string"
                     },
                     "booksRead": {
-                        "type": "integer",
-                        "format": "int64"
+                        "type": "string"
                     }
                 },
                 "xml": {
@@ -512,7 +503,7 @@
                         }
                     }
                 },
-                "required": true
+                "required": false
             }
         },
         "securitySchemes": {

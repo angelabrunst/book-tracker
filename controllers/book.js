@@ -29,15 +29,15 @@ exports.getAllBook = (req, res) => {
 };
 
 exports.getBook = (req, res) => {
-    const bookName = req.params.bookName;
-    Book.find({ bookName: bookName })
+    const bookId = (req.params.id);
+    Book.FindById(bookId)
         .then((data) => {
-            if (!data) res.status(404).send({ message: 'Book not found named: ' + bookName });
+            if (!data) res.status(404).send({ message: 'Book not found named: ' + bookId });
             else res.send(data[0]);
         })
         .catch((err) => {
             res.status(500).send({
-                message: 'Error retrieving book with bookName=' + bookName,
+                message: 'Error retrieving book with book ID =' + bookId,
                 error: err
             });
         });
