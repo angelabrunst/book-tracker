@@ -13,9 +13,9 @@
         },
         "version": "1.0.0"
     },
-    "host": "localhost:8080",
+    "host": "book-tracker-abrunst.herokuapp.com",
     "basePath": "/",
-    "schemes": ["http"],
+    "schemes": ["https"],
     "tags": [{
             "name": "book",
             "description": "Book Collection"
@@ -79,16 +79,16 @@
                 }]
             }
         },
-        "/book/{_id}": {
+        "/book/{bookName}": {
             "get": {
                 "tags": [
                     "book"
                 ],
-                "summary": "Find book by book ID",
+                "summary": "Find book by title",
                 "description": "Returns a single book",
                 "operationId": "getBook",
                 "parameters": [{
-                    "name": "_id",
+                    "name": "bookName",
                     "in": "path",
                     "description": "Name the book needed",
                     "required": true,
@@ -128,7 +128,7 @@
                 "summary": "Update an existing book",
                 "operationId": "updateBook",
                 "parameters": [{
-                    "name": "_id",
+                    "name": "bookName",
                     "in": "path",
                     "description": "Book name to update",
                     "required": true,
@@ -166,7 +166,7 @@
                 "summary": "Delete a book",
                 "operationId": "deleteBook",
                 "parameters": [{
-                    "name": "_id",
+                    "name": "bookName",
                     "in": "path",
                     "description": "Book name to delete",
                     "required": true,
