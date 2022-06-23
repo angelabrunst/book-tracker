@@ -13,7 +13,7 @@ module.exports = (mongoose) => {
             type: String
         },
         booksRead: [
-            mongoose.SchemaTypes.ObjectId
+            mongoose.SchemaTypes.String
         ]
     });
 
