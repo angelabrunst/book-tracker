@@ -65,9 +65,9 @@ module.exports.updateBook = async(req, res) => {
         Book.findOne({ bookName: bookName }, function(err, book) {
             book.bookname = req.params.bookName;
             book.bookAuthor = req.body.bookAuthor;
-            book.displayName = req.body.displayName;
             book.numberOfPages = req.body.numberOfPages;
             book.bookDescription = req.body.bookDescription;
+            book.bookCoverImg = reg.body.bookCoverImg;
             book.save(function(err) {
                 if (err) {
                     res.status(500).json(err || 'Some error occurred while updating the book.');

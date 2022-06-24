@@ -81,9 +81,9 @@ module.exports.updateUser = async(req, res) => {
         }
         User.findOne({ username: username }, function(err, user) {
             user.username = req.params.username;
-            user.password = req.body.password;
             user.firstName = req.body.firstName;
             user.lastName = req.body.lastName;
+            user.password = req.body.password;
             user.booksRead = req.body.booksRead;
             user.save(function(err) {
                 if (err) {
