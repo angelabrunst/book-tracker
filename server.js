@@ -1,31 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { auth, requiresAuth } = require('express-openid-connect');
+const { auth } = require('express-openid-connect');
 require('dotenv').config();
 
 const port = process.env.PORT || 8080;
 const app = express();
 
-// const checkJwt = auth({
-//     audience: 'https://book-tracker-abrunst.herokuapp.com',
-//     issuerBaseURL: `https://dev-cp5ml92r.us.auth0.com/`,
-// });
-
-// app.get('/api/public', function(req, res) {
-//     res.json({
-//         message: 'Hello from a public endpoint! You don\'t need to be authenticated to see this.'
-//     });
-// });
-
-// // This route needs authentication
-// app.get('/api/private', checkJwt, function(req, res) {
-//     res.json({
-//         message: 'Hello from a private endpoint! You need to be authenticated to see this.'
-//     });
-// });
-
 app.use(
     auth({
+        authRequired: false,
+        auth0Logout: true,
         issuerBaseURL: process.env.ISSUER_BASE_URL,
         baseURL: process.env.BASE_URL,
         clientID: process.env.CLIENT_ID,
@@ -34,9 +18,9 @@ app.use(
 )
 
 
-// app.get('/', (req, res) => {
-//     res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-// });
+app.get('/', (req, res) => {
+    res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+});
 
 app
     .use(bodyParser.json())
