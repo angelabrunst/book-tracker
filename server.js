@@ -1,38 +1,38 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { auth } = require('express-oauth2-jwt-bearer');
+const { auth, requiresAuth } = require('express-openid-connect');
+require('dotenv').config();
 
 const port = process.env.PORT || 8080;
 const app = express();
 
-const checkJwt = auth({
-    audience: 'https://book-tracker-abrunst.herokuapp.com',
-    issuerBaseURL: `https://dev-cp5ml92r.us.auth0.com/`,
-});
+// const checkJwt = auth({
+//     audience: 'https://book-tracker-abrunst.herokuapp.com',
+//     issuerBaseURL: `https://dev-cp5ml92r.us.auth0.com/`,
+// });
 
-app.get('/api/public', function(req, res) {
-    res.json({
-        message: 'Hello from a public endpoint! You don\'t need to be authenticated to see this.'
-    });
-});
+// app.get('/api/public', function(req, res) {
+//     res.json({
+//         message: 'Hello from a public endpoint! You don\'t need to be authenticated to see this.'
+//     });
+// });
 
-// This route needs authentication
-app.get('/api/private', checkJwt, function(req, res) {
-    res.json({
-        message: 'Hello from a private endpoint! You need to be authenticated to see this.'
-    });
-});
+// // This route needs authentication
+// app.get('/api/private', checkJwt, function(req, res) {
+//     res.json({
+//         message: 'Hello from a private endpoint! You need to be authenticated to see this.'
+//     });
+// });
 
-// const config = {
-//     authRequired: false,
-//     auth0Logout: true,
-//     secret: process.env.SECRET,
-//     baseURL: process.env.BASE_URL,
-//     clientID: process.env.CLIENT_ID,
-//     issuerBaseURL: process.env.ISSUER_BASE_URL,
-// };
+app.use(
+    auth({
+        issuerBaseURL: process.env.ISSUER_BASE_URL,
+        baseURL: process.env.BASE_URL,
+        clientID: process.env.CLIENT_ID,
+        secret: process.env.SECRET,
+    })
+)
 
-// app.use(auth(config));
 
 // app.get('/', (req, res) => {
 //     res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
