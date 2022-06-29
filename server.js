@@ -6,7 +6,7 @@ const port = process.env.PORT || 8080;
 const app = express();
 
 const checkJwt = auth({
-    audience: 'YOUR_API_IDENTIFIER',
+    audience: 'https://book-tracker-abrunst.herokuapp.com',
     issuerBaseURL: `https://dev-cp5ml92r.us.auth0.com/`,
 });
 
