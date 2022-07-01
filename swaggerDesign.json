@@ -511,8 +511,9 @@
                 "type": "oauth2",
                 "flows": {
                     "implicit": {
-                        "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+                        "authorizationUrl": "https://book-tracker-abrunst.herokuapp.com/api-docs",
                         "scopes": {
+                            "write:users": "modify users in your account",
                             "write:books": "modify books in your account",
                             "read:books": "read your books"
                         }
